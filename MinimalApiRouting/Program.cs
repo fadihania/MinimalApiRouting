@@ -1,8 +1,31 @@
-﻿var builder = WebApplication.CreateBuilder(args);
+﻿using MinimalApiRouting;
+
+var builder = WebApplication.CreateBuilder(args);
 // Services
 // 👉
 
 var app = builder.Build();
+
+// Cars list
+var cars = new List<Car>
+{
+    new Car
+    {
+        Id = "111", Brand = "VW", Model = "Golf",
+        ProductionYear = 2015, Color = "White"
+    },
+    new Car
+    {
+        Id = "222", Brand = "KIA", Model = "Soul",
+        ProductionYear = 2023, Color = "Silver"
+    },
+    new Car
+    {
+        Id = "333", Brand = "Skoda", Model = "Octavia",
+        ProductionYear = 2020, Color = "Black"
+    },
+};
+
 // Middlewares
 // 👉
 
