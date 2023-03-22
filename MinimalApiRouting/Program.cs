@@ -1,11 +1,8 @@
 ﻿using MinimalApiRouting;
-
 var builder = WebApplication.CreateBuilder(args);
 // Services
 // 👉
-
 var app = builder.Build();
-
 // Cars list
 var cars = new List<Car>
 {
@@ -25,17 +22,15 @@ var cars = new List<Car>
         ProductionYear = 2020, Color = "Black"
     },
 };
-
 // Middlewares
 // 👉
-
 app.MapGet("/", () => "Car Manager");
-
 // Car API
 app.MapGet("/api/Cars", () => cars); // Get All Cars
 app.MapGet("/api/Cars/{id}", (string id) => // Get Car By Id
 {
     return cars.FirstOrDefault(c => c.Id == id);
 });
+app.MapPost("/api/Cars", () => "Create Car"); // Create Car
 
 app.Run();
