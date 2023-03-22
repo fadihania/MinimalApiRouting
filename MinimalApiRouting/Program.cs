@@ -8,4 +8,7 @@ var app = builder.Build();
 
 app.MapGet("/", () => "Car Manager");
 
+// Car API
+app.MapGet("/api/Cars", () => "Cars");
+
 app.Run();
