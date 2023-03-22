@@ -32,6 +32,6 @@ var cars = new List<Car>
 app.MapGet("/", () => "Car Manager");
 
 // Car API
-app.MapGet("/api/Cars", () => "Cars");
+app.MapGet("/api/Cars", () => cars); // Get All Cars
 
 app.Run();
