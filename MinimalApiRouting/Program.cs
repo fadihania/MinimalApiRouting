@@ -31,6 +31,10 @@ app.MapGet("/api/Cars/{id}", (string id) => // Get Car By Id
 {
     return cars.FirstOrDefault(c => c.Id == id);
 });
-app.MapPost("/api/Cars", () => "Create Car"); // Create Car
+app.MapPost("/api/Cars", (Car newCar) => // Create Car
+{
+    cars.Add(newCar);
+    return "Created!";
+});
 
 app.Run();
