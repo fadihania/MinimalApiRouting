@@ -36,5 +36,14 @@ app.MapPost("/api/Cars", (Car newCar) => // Create Car
     cars.Add(newCar);
     return "Created!";
 });
+app.MapDelete("/api/Cars/{id}", (string id) => // Delete Car
+{
+    // Find the car
+    var carToDelete = cars.FirstOrDefault(c => c.Id == id);
+    // Remove element
+    cars.Remove(carToDelete);
+
+    return "Deleted";
+});
 
 app.Run();
