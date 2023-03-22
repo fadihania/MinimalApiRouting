@@ -33,5 +33,9 @@ app.MapGet("/", () => "Car Manager");
 
 // Car API
 app.MapGet("/api/Cars", () => cars); // Get All Cars
+app.MapGet("/api/Cars/{id}", (string id) => // Get Car By Id
+{
+    return cars.FirstOrDefault(c => c.Id == id);
+});
 
 app.Run();
