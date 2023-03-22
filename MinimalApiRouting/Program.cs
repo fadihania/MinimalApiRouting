@@ -45,5 +45,12 @@ app.MapDelete("/api/Cars/{id}", (string id) => // Delete Car
 
     return "Deleted";
 });
+app.MapPut("/api/Cars/{id}", (string id, Car updatedCar) => // Update Car
+{
+    var carIndex = cars.FindIndex(c => c.Id == id);
+    cars[carIndex] = updatedCar;
+
+    return "Updated!";
+});
 
 app.Run();
