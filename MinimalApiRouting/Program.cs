@@ -1,54 +1,38 @@
 ﻿using MinimalApiRouting;
+
 var builder = WebApplication.CreateBuilder(args);
 // Services
 // 👉
+
 var app = builder.Build();
-// Cars list
-var cars = new List<Car>
-{
-    new Car
-    {
-        Id = "111", Brand = "VW", Model = "Golf",
-        ProductionYear = 2015, Color = "White"
-    },
-    new Car
-    {
-        Id = "222", Brand = "KIA", Model = "Soul",
-        ProductionYear = 2023, Color = "Silver"
-    },
-    new Car
-    {
-        Id = "333", Brand = "Skoda", Model = "Octavia",
-        ProductionYear = 2020, Color = "Black"
-    },
-};
 // Middlewares
 // 👉
+
 app.MapGet("/", () => "Car Manager");
 // Car API
-app.MapGet("/api/Cars", () => cars); // Get All Cars
+app.MapGet("/api/Cars", () => Data.cars); // Get All Cars
 app.MapGet("/api/Cars/{id}", (string id) => // Get Car By Id
 {
-    return cars.FirstOrDefault(c => c.Id == id);
+    return Data.cars.FirstOrDefault(c => c.Id == id);
 });
 app.MapPost("/api/Cars", (Car newCar) => // Create Car
 {
-    cars.Add(newCar);
+    Data.cars.Add(newCar);
     return "Created!";
 });
 app.MapDelete("/api/Cars/{id}", (string id) => // Delete Car
 {
     // Find the car
-    var carToDelete = cars.FirstOrDefault(c => c.Id == id);
+    var carToDelete = Data.cars.FirstOrDefault(c => c.Id == id);
     // Remove element
-    cars.Remove(carToDelete);
+    Data.cars.Remove(carToDelete);
 
     return "Deleted";
 });
 app.MapPut("/api/Cars/{id}", (string id, Car updatedCar) => // Update Car
 {
-    var carIndex = cars.FindIndex(c => c.Id == id);
-    cars[carIndex] = updatedCar;
+    var carIndex = Data.cars.FindIndex(c => c.Id == id);
+    Data.cars[carIndex] = updatedCar;
 
     return "Updated!";
 });
